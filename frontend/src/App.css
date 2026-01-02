@@ -221,7 +221,7 @@ body {
   transform: translateY(-50%);
   color: var(--black);
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   font-family: 'Press Start 2P', cursive;
   text-shadow: 1px 1px 0 rgba(255, 176, 136, 0.5);
   white-space: nowrap;
@@ -234,7 +234,7 @@ body {
   transform: translateY(-50%);
   color: var(--orange-peach);
   font-weight: 400;
-  font-size: 10px;
+  font-size: 14px;
   font-family: 'Press Start 2P', cursive;
   white-space: nowrap;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
