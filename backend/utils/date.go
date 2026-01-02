@@ -21,11 +21,18 @@ type CountdownData struct {
 
 // GetYearProgress calculates the countdown progress for a given year
 func GetYearProgress(year int) CountdownData {
-	now := time.Now()
+	// Load IST timezone (Asia/Kolkata)
+	ist, err := time.LoadLocation("Asia/Kolkata")
+	if err != nil {
+		// Fallback to UTC if timezone loading fails
+		ist = time.UTC
+	}
 
-	// Define start and end of the year
-	startOfYear := time.Date(year, 1, 1, 0, 0, 0, 0, time.UTC)
-	endOfYear := time.Date(year, 12, 31, 23, 59, 59, 0, time.UTC)
+	now := time.Now().In(ist)
+
+	// Define start and end of the year in IST
+	startOfYear := time.Date(year, 1, 1, 0, 0, 0, 0, ist)
+	endOfYear := time.Date(year, 12, 31, 23, 59, 59, 0, ist)
 
 	// Calculate days
 	daysPassed := int(now.Sub(startOfYear).Hours() / 24)
@@ -59,13 +66,20 @@ func GetYearProgress(year int) CountdownData {
 
 // GetMonthProgress calculates the countdown progress for the current month
 func GetMonthProgress() CountdownData {
-	now := time.Now()
+	// Load IST timezone (Asia/Kolkata)
+	ist, err := time.LoadLocation("Asia/Kolkata")
+	if err != nil {
+		// Fallback to UTC if timezone loading fails
+		ist = time.UTC
+	}
+
+	now := time.Now().In(ist)
 
 	// Get current month details
 	year, month, _ := now.Date()
 
-	// Start and end of current month
-	startOfMonth := time.Date(year, month, 1, 0, 0, 0, 0, time.UTC)
+	// Start and end of current month in IST
+	startOfMonth := time.Date(year, month, 1, 0, 0, 0, 0, ist)
 	endOfMonth := startOfMonth.AddDate(0, 1, 0).Add(-time.Second)
 
 	// Calculate days
@@ -102,7 +116,14 @@ func GetMonthProgress() CountdownData {
 
 // GetWeekProgress calculates the countdown progress for the current week (Monday-Sunday)
 func GetWeekProgress() CountdownData {
-	now := time.Now()
+	// Load IST timezone (Asia/Kolkata)
+	ist, err := time.LoadLocation("Asia/Kolkata")
+	if err != nil {
+		// Fallback to UTC if timezone loading fails
+		ist = time.UTC
+	}
+
+	now := time.Now().In(ist)
 
 	// Get the current day of week (0 = Sunday, 1 = Monday, etc.)
 	currentWeekday := int(now.Weekday())
@@ -115,13 +136,13 @@ func GetWeekProgress() CountdownData {
 		isoWeekday = 6 // Sunday
 	}
 
-	// Calculate start of week (Monday)
+	// Calculate start of week (Monday) in IST
 	startOfWeek := now.AddDate(0, 0, -isoWeekday)
-	startOfWeek = time.Date(startOfWeek.Year(), startOfWeek.Month(), startOfWeek.Day(), 0, 0, 0, 0, time.UTC)
+	startOfWeek = time.Date(startOfWeek.Year(), startOfWeek.Month(), startOfWeek.Day(), 0, 0, 0, 0, ist)
 
-	// Calculate end of week (Sunday)
+	// Calculate end of week (Sunday) in IST
 	endOfWeek := startOfWeek.AddDate(0, 0, 6)
-	endOfWeek = time.Date(endOfWeek.Year(), endOfWeek.Month(), endOfWeek.Day(), 23, 59, 59, 0, time.UTC)
+	endOfWeek = time.Date(endOfWeek.Year(), endOfWeek.Month(), endOfWeek.Day(), 23, 59, 59, 0, ist)
 
 	// Get ISO week number
 	_, weekNumber := now.ISOWeek()
