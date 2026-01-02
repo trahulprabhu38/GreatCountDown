@@ -12,11 +12,15 @@ function App() {
   return (
     <div className="app">
       <Container>
+        <div className="arcade-header">
+          <h1 className="arcade-title">COUNTDOWN</h1>
+        </div>
+
         <FilterTabs activeFilter={filter} onFilterChange={setFilter} />
 
-        {loading && <div className="loading">Loading...</div>}
+        {loading && <div className="loading">LOADING...</div>}
 
-        {error && <div className="error">Error: {error}</div>}
+        {error && <div className="error">ERROR: {error}</div>}
 
         {!loading && !error && data && (
           <>

@@ -18,7 +18,7 @@ const CountdownDisplay = ({ data, filter }) => {
 
   return (
     <div className="countdown-display">
-      <h1 className="title">{getTitle()}</h1>
+      <h2 className="title">{getTitle()}</h2>
       <div className="countdown-number">{data.daysRemaining}</div>
       <div className="subtitle">
         {filter === 'year' && `out of ${data.daysTotal} days`}
