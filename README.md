@@ -34,6 +34,7 @@ docker-compose up --build
 docker-compose up --build -d
 ```
 
+
 ### Access the Application
 
 - **Frontend**: http://localhost:5173
