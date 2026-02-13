@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: frontend-deploy
+  name: frontend-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-deploy
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: frontend-deploy
+    spec:
+      containers:
+      - image: trahulprabhu38/counter:v-unix
+        name: counter
+        resources: {}
+status: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: frontend-svc
+  name: frontend-svc
+spec:
+  ports:
+  - name: 5173-5173
+    port: 5173
+    protocol: TCP
+    targetPort: 5173
+    nodePort: 30040
+  selector:
+    app: frontend-deploy
+  type: NodePort
+status:
+  loadBalancer: {}
