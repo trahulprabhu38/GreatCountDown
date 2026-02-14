@@ -4,6 +4,7 @@ metadata:
   labels:
     app: frontend-deploy
   name: frontend-deploy
+  namespace: counter
 spec:
   replicas: 1
   selector:
@@ -16,7 +17,7 @@ spec:
         app: frontend-deploy
     spec:
       containers:
-      - image: trahulprabhu38/counter:v-unix
+      - image: trahulprabhu38/counter:v-linux
         name: counter
         resources: {}
 status: {}
@@ -29,6 +30,7 @@ metadata:
   labels:
     app: frontend-svc
   name: frontend-svc
+  namespace: counter
 spec:
   ports:
   - name: 5173-5173
