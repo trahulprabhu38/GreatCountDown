@@ -1,4 +1,4 @@
-const API_BASE_URL = '/api';
+const API_BASE_URL = 'http://backend:8080/api';
 
 export const fetchCountdown = async (filter = 'year') => {
   let endpoint = `${API_BASE_URL}/countdown`;
