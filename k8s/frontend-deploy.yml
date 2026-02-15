@@ -17,7 +17,7 @@ spec:
         app: frontend-deploy
     spec:
       containers:
-      - image: trahulprabhu38/counter:v0.5-linux
+      - image: trahulprabhu38/counter:v0.6-linux
         name: counter
         resources: {}
 status: {}
