@@ -37,8 +37,9 @@ spec:
     port: 8080
     protocol: TCP
     targetPort: 8080
+    nodePort: 30041
   selector:
     app: backend-deploy
-  type: ClusterIP
+  type: NodePort
 status:
   loadBalancer: {}
